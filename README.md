@@ -2,13 +2,14 @@
 <html lang="id">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
 <title>Layanan Antar Jemput Pasien – MOBISNU UPZIS MWCNU Dayeuhluhur</title>
 <style>
 :root{--g:#0b7a3b;--gd:#064e27;--gold:#c9a227;--bg:#fff;--soft:#f1f8f3;--tx:#1b2b21;--mu:#5b6b61;--bd:#d5e5da;--er:#c0392b;--card:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--g:#2fa863;--gd:#0c2c1a;--bg:#0f1713;--soft:#16231b;--tx:#e8f2ec;--mu:#9db1a5;--bd:#294235;--er:#ff7a6b;--card:#14201a;color-scheme:dark}}
 :root[data-theme="dark"]{--g:#2fa863;--gd:#0c2c1a;--bg:#0f1713;--soft:#16231b;--tx:#e8f2ec;--mu:#9db1a5;--bd:#294235;--er:#ff7a6b;--card:#14201a;color-scheme:dark}
-html{scroll-behavior:smooth;scroll-padding-top:70px}
+html{scroll-behavior:smooth;scroll-padding-top:70px;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+html,body{touch-action:pan-x pan-y}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--tx);font:17px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
 header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--gd);color:#fff;display:flex;align-items:center;gap:10px;padding:10px 16px;border-bottom:3px solid var(--gold)}
@@ -207,6 +208,10 @@ frm.addEventListener("submit",e=>{
 });
 document.querySelectorAll("[data-home]").forEach(a=>a.addEventListener("click",e=>{e.preventDefault();show(true)}));
 document.querySelectorAll('a[href="#form"]').forEach(a=>a.addEventListener("click",()=>{if($("#home").style.display==="none")show(true)}));
+// Kunci zoom (pinch, double-tap, Ctrl+scroll)
+["gesturestart","gesturechange","gestureend"].forEach(t=>document.addEventListener(t,e=>e.preventDefault()));
+document.addEventListener("wheel",e=>{if(e.ctrlKey)e.preventDefault()},{passive:false});
+document.addEventListener("touchmove",e=>{if(e.touches.length>1)e.preventDefault()},{passive:false});
 // Logo opsional: jika ada logo.png di folder yang sama, otomatis tampil
 const im=new Image();im.onload=()=>{$("#logo").innerHTML="";$("#logo").appendChild(im)};im.src="logo.png";
 </script>
